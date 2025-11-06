@@ -4,7 +4,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import hashes
 import os
 
-# Symmetric Encryption using AES-GCM function
+#  Symmetric Encryption using AES-GCM function
 def aes_ed(message):
     key = secrets.token_bytes(32)  # Generate a random 256-bit key
     nonce = secrets.token_bytes(12)  # Generate a random 96-bit nonce
@@ -25,14 +25,14 @@ def rsa_ed(message):
     
     ciphertext = public_key.encrypt(
         message.encode(),
-        padding.OAEP(  # Optimal Asymmetric Encryption Padding
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),  # mask generation function
-            algorithm=hashes.SHA256(),  # hashing algorithm
+        padding.OAEP(   # Optimal Asymmetric Encryption Padding
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),   # mask generation function
+            algorithm=hashes.SHA256(),   # hashing algorithm
             label=None 
         )
     )
     
-    plaintext = private_key.decrypt(  # decrypting the ciphertext
+    plaintext = private_key.decrypt(   # decrypting the ciphertext
         ciphertext,  # the ciphertext to decrypt
         padding.OAEP(  # Optimal Asymmetric Encryption Padding
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
